@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:toonflix/widgets/Button.dart';
+import 'package:toonflix/widgets/currency_card.dart';
 
 void main() {
   runApp(const App());
@@ -19,10 +21,11 @@ class App extends StatelessWidget {
     return MaterialApp(
       // Scaffold -> app의 구조를 잡아주는 애임 모든 app 에서 필요함
       home: Scaffold(
-          backgroundColor: const Color(0xFF181818),
-          body: Padding(
+        backgroundColor: const Color(0xFF181818),
+        body: SingleChildScrollView(
+          child: Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: 40,
+              horizontal: 20,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,7 +59,7 @@ class App extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: 120,
+                  height: 70,
                 ),
                 Text(
                   'Total Balance',
@@ -79,31 +82,77 @@ class App extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                Row(
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.amber,
-                        borderRadius: BorderRadius.circular(45),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 20,
-                          horizontal: 50,
-                        ),
-                        child: Text(
-                          'Transfer',
-                          style: TextStyle(
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                    )
+                    Button(
+                      text: 'Transfer',
+                      bgColor: Color(0XFFF1B33B),
+                      txtColor: Colors.black,
+                    ),
+                    Button(
+                      text: 'Request',
+                      bgColor: Color(0xFF1F2123),
+                      txtColor: Colors.white,
+                    ),
                   ],
-                )
+                ),
+                const SizedBox(
+                  height: 100,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    const Text(
+                      'Wallets',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 36,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      'View All',
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.8),
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const CurrencyCard(
+                  name: "Euro",
+                  code: "EUR",
+                  amount: '6 428',
+                  icon: Icons.euro_rounded,
+                  isInverted: false,
+                  order: 1,
+                ),
+                const CurrencyCard(
+                  name: "Bitcoin",
+                  code: "BTC",
+                  amount: '9 785',
+                  icon: Icons.currency_bitcoin,
+                  isInverted: true,
+                  order: 2,
+                ),
+                const CurrencyCard(
+                  name: "Dollar",
+                  code: "USD",
+                  amount: '428',
+                  icon: Icons.attach_money_outlined,
+                  isInverted: false,
+                  order: 3,
+                ),
               ],
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }
